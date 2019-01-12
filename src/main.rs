@@ -19,7 +19,7 @@ pub fn main() {
     let mut event_pump = sdl_context.event_pump().unwrap();
 
     let mut pos = Pos { x: 0, y: 0 };
-    let mut world = World { tick: 0, cursor_pos: Pos { x: 0, y: 0 } };
+    let mut world = World::new();
 
     'running: loop {
         for event in event_pump.poll_iter() {
@@ -45,7 +45,6 @@ pub fn main() {
 }
 
 fn tick(pos: &Pos, world: &mut world::World) {
-    world.cursor_pos.x = pos.x;
-    world.cursor_pos.y = pos.y;
-    world.tick = world.tick + 1;
+    world.next_tick();
+    world.write_cursor_pos(&pos);
 }

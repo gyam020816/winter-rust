@@ -29,13 +29,16 @@ impl RenderCanvas {
     pub fn render(&mut self, world: &World) {
         let ww = 30;
         let hh = 40;
+        let cursor_pos = world.get_cursor_pos();
+
         let rect = Rect::new(
-            world.cursor_pos.x - (ww / 2) as i32,
-            world.cursor_pos.y - (hh / 2) as i32, ww, hh
+            cursor_pos.x - (ww / 2) as i32,
+            cursor_pos.y - (hh / 2) as i32, ww, hh
         );
 
-        let r: u8 = (world.tick % 255) as u8;
-        let b: u8 = (255 - world.tick % 255) as u8;
+        let tick = world.current_tick();
+        let r: u8 = (tick % 255) as u8;
+        let b: u8 = (255 - r) as u8;
 
         self.canvas.set_draw_color(Color::RGB(r, 64, b));
         self.canvas.fill_rect(rect).unwrap();
