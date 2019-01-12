@@ -30,7 +30,7 @@ pipeline {
                 }
             }
             steps {
-                sh "cargo test"
+                sh "cargo test --verbose"
             }
         }
     }
