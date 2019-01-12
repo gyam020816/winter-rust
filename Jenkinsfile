@@ -7,27 +7,25 @@ pipeline {
         skipDefaultCheckout true
     }
     stages {
-        stage('Clean workspace') {
+        stage('Reset workspace') {
             steps {
                 deleteDir()
+                checkout scm
             }
         }
         stage('Build') {
             agent {
-                docker {
-                    image 'ekidd/rust-musl-builder'
+                dockerfile {
                     reuseNode true
                 }
             }
             steps {
-                checkout scm
                 sh "cargo build"
             }
         }
         stage('Test') {
             agent {
-                docker {
-                    image 'ekidd/rust-musl-builder'
+                dockerfile {
                     reuseNode true
                 }
             }
