@@ -1,4 +1,4 @@
-**winter-rust** is my scratch project for experimenting with Rust while I'm learning the langage.
+**winter-rust** is my scratch project for experimenting with Rust while I'm learning the language.
 
 Things to be done:
 
